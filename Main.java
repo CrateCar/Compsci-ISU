@@ -13,7 +13,7 @@ public class Main {
         }
     }
 
-    public static void Game(String mode) {
+    public static void Game(int mode) {
         String[][] board = {
             {" "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "},
@@ -33,8 +33,20 @@ public class Main {
         System.out.println("[1] Player Vs Player");
         System.out.println("[2] Player Vs Computer (Random)");
         System.out.println("[3] Player Vs Computer (HARD)");
-        Game("pvp");
-        System.out.print("Select a game mode to play (by number):");
+
+        int option = 0;
+
+        while (option == 0) {
+            System.out.print("Select a game mode to play (by number):");
+            int tempOption = Integer.parseInt(sc.nextLine());
+
+            if(1 <= tempOption && tempOption <= 3) {
+                option = tempOption;
+            }
+        }
+
+        Game(option);
+
         sc.close();
     }
 }
