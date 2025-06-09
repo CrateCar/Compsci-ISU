@@ -21,6 +21,7 @@ public class Main {
             if (board[r][column-1] == " ") {
                 board[r][column-1] = players[player-1];
                 dropped = true;
+                break;
             }
         }
 
@@ -54,13 +55,20 @@ public class Main {
             while (!win) {
                 System.out.println("Select a column(1-7):");
                 int column = Integer.parseInt(sc.nextLine());
-
                 boolean valid = false;
                 while (!valid) {
                     if (column >= 1 && column <=7) {
+                        valid = drop(board,column,1);
+                    }
 
+                    if (!valid) {
+                        System.out.println("Invalid column, try again!");
+                        System.out.println("Select a column(1-7):");
+                        column = Integer.parseInt(sc.nextLine());
                     }
                 }
+
+                printBoard(board);
             }
         }
     }
