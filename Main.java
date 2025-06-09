@@ -14,6 +14,8 @@ public class Main {
     }
 
     public static void Game(int mode) {
+        System.out.println("Begin!");
+
         String[][] board = {
             {" "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "},
@@ -22,8 +24,13 @@ public class Main {
             {" "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "}    
         }; //2D array of the board
-        
+
         printBoard(board);
+
+        if (mode == 1) {
+            boolean win = false;
+            int winner = 0;
+        }
     }
     public static void main(String[] args) {
         // Fancy Menu UI
