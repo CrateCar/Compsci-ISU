@@ -69,6 +69,28 @@ public class Main {
         return winner;
     }
 
+    public static int gameOptions() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Game Modes:");
+
+        System.out.println("[1] Player Vs Player");
+        System.out.println("[2] Player Vs Computer (Random)");
+        System.out.println("[3] Player Vs Computer (HARD)");
+
+        int option = 0;
+
+        while (option == 0) {
+            System.out.print("Select a game mode to play (by number):");
+            int tempOption = Integer.parseInt(sc.nextLine());
+
+            if(1 <= tempOption && tempOption <= 3) {
+                option = tempOption;
+            }
+        }
+
+        return option;
+    }
+
     public static void Game(int mode) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Game Modes:");
@@ -154,29 +176,32 @@ public class Main {
             System.out.println("Play again?");
             System.out.println("[1] Yes");
             System.out.println("[2] No");
+            
+            int option = 0;
 
-            System.out.println("Select an option:");
+            while (option == 0) {
+                System.out.println("Select an option:");
+                int tempOption = Integer.parseInt(sc.nextLine());
+
+                if(1 <= tempOption && tempOption <= 2) {
+                    option = tempOption;
+                }
+            }
+
+            if (option == 1) {
+                option = gameOptions();
+                Game(option);
+            } else {
+                System.out.println("Quitting!");
+                return;
+            }
         }
     }
     public static void main(String[] args) {
         // Fancy Menu UI
         Scanner sc = new Scanner(System.in);
-        System.out.println("Game Modes:");
 
-        System.out.println("[1] Player Vs Player");
-        System.out.println("[2] Player Vs Computer (Random)");
-        System.out.println("[3] Player Vs Computer (HARD)");
-
-        int option = 0;
-
-        while (option == 0) {
-            System.out.print("Select a game mode to play (by number):");
-            int tempOption = Integer.parseInt(sc.nextLine());
-
-            if(1 <= tempOption && tempOption <= 3) {
-                option = tempOption;
-            }
-        }
+        int option = gameOptions();
 
         Game(option);
 
