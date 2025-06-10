@@ -28,6 +28,47 @@ public class Main {
         return dropped;
     }
 
+    public static int checkWin(String[][] board,int player) {
+        //Check Rows
+        String[] players = {"O","X"};
+        int winner = -1;
+        int t_count = 0;
+
+        for (int r=0;r<6;r++) {
+            for (int c=0;c<7;c++) {
+                if (board[r][c] != " ") {
+                    t_count++;
+                }
+            }
+        }
+
+        if (t_count == (6*7)) {
+            winner = 0;
+            return winner;
+        }
+
+        for (int r=0;r<6;r++) {
+            if (winner != -1) {
+                break;
+            }
+
+            for (int c=0;c<4;c++) {
+                int count = 0;
+                for (int i=0;i<4;i++) {
+                    if(board[r][c+i] == players[player-1]) {
+                        count++;
+                    }
+                }
+                if(count == 4) {
+                    winner = player;
+                    break;
+                }
+            }
+        }
+
+        return winner;
+    }
+
     public static void Game(int mode) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Game Modes:");
@@ -53,6 +94,7 @@ public class Main {
             System.out.println("Player 2: X");
 
             while (!win) {
+                //First Player
                 System.out.println("Select a column(1-7):");
                 int column = Integer.parseInt(sc.nextLine());
                 boolean valid = false;
@@ -67,9 +109,53 @@ public class Main {
                         column = Integer.parseInt(sc.nextLine());
                     }
                 }
-
+        
                 printBoard(board);
+
+                int posWin = checkWin(board, 1);
+
+                if (posWin != -1) {
+                    winner = posWin;
+                    win = true;
+                    break;
+                }
+
+                System.out.println("Select a column(1-7):");
+                column = Integer.parseInt(sc.nextLine());
+                valid = false;
+                while (!valid) {
+                    if (column >= 1 && column <=7) {
+                        valid = drop(board,column,2);
+                    }
+
+                    if (!valid) {
+                        System.out.println("Invalid column, try again!");
+                        System.out.println("Select a column(1-7):");
+                        column = Integer.parseInt(sc.nextLine());
+                    }
+                }
+        
+                printBoard(board);
+
+                posWin = checkWin(board, 2);
+
+                if (posWin != -1) {
+                    winner = posWin;
+                    win = true;
+                    break;
+                }
             }
+            if (winner == 0) {
+                System.out.println("Nobody won!");
+            }else{
+                System.out.println(String.format("Player %d won!", winner));
+            }
+
+            System.out.println("Play again?");
+            System.out.println("[1] Yes");
+            System.out.println("[2] No");
+
+            System.out.println("Select an option:");
         }
     }
     public static void main(String[] args) {
