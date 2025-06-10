@@ -48,10 +48,6 @@ public class Main {
         }
 
         for (int r=0;r<6;r++) {
-            if (winner != -1) {
-                break;
-            }
-
             for (int c=0;c<4;c++) {
                 int count = 0;
                 for (int i=0;i<4;i++) {
@@ -61,7 +57,37 @@ public class Main {
                 }
                 if(count == 4) {
                     winner = player;
-                    break;
+                    return winner;
+                }
+            }
+        }
+
+        for (int r=0;r<3;r++) {
+            for (int c=0;c<7;c++) {
+                int count = 0;
+                for (int i=0;i<4;i++) {
+                    if(board[r+i][c] == players[player-1]) {
+                        count++;
+                    }
+                }
+                if(count == 4) {
+                    winner = player;
+                    return winner;
+                }
+            }
+        }
+
+        for (int r=5;r>=3;r--) {
+            for (int c=0;c<4;c++) {
+                int count = 0;
+                for (int i=0;i<4;i++) {
+                    if(board[r-i][c+i] == players[player-1]) {
+                        count++;
+                    }
+                }
+                if(count == 4) {
+                    winner = player;
+                    return winner;
                 }
             }
         }
@@ -193,6 +219,7 @@ public class Main {
                 Game(option);
             } else {
                 System.out.println("Quitting!");
+                sc.close();
                 return;
             }
         }
