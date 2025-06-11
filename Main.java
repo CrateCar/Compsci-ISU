@@ -127,6 +127,10 @@ public class Main {
         }
     }
 
+    public static void playSmart(String[][] board) {
+        
+    }
+
     public static void Game(int mode) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Game Modes:");
@@ -308,6 +312,54 @@ public class Main {
                 System.out.println("Quitting!");
                 sc.close();
                 return;
+            }
+        } else {
+            boolean win = false;
+            int winner = 0;
+
+            System.out.println("Player 1: O");
+            System.out.println("Player 2: X");
+
+            while (!win) {
+                //First Player
+                System.out.println("Select a column(1-7):");
+                int column = Integer.parseInt(sc.nextLine());
+                boolean valid = false;
+                while (!valid) {
+                    if (column >= 1 && column <=7) {
+                        valid = drop(board,column,1);
+                    }
+
+                    if (!valid) {
+                        System.out.println("Invalid column, try again!");
+                        System.out.println("Select a column(1-7):");
+                        column = Integer.parseInt(sc.nextLine());
+                    }
+                }
+        
+                printBoard(board);
+
+                int posWin = checkWin(board, 1);
+
+                if (posWin != -1) {
+                    winner = posWin;
+                    win = true;
+                    break;
+                }
+
+                System.out.println("AI's turn:");
+
+                playSmart(board);
+        
+                printBoard(board);
+
+                posWin = checkWin(board, 2);
+
+                if (posWin != -1) {
+                    winner = posWin;
+                    win = true;
+                    break;
+                }
             }
         }
     }
