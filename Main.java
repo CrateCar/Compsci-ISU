@@ -147,7 +147,7 @@ public class Main {
                                     break;
                                 }
                             } else {
-                                column = i;
+                                column = c+i;
                             }
                         } else if(board[r][c+i] == players[p]) {
                             count += 1;
