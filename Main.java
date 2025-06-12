@@ -158,9 +158,44 @@ public class Main {
                             break;
                         }
                     }
-                    System.out.println(priority);
                     if(column != -1) {
                         if (count >= priority) {
+                            priority = count;
+                            col = column;
+                            player = p+1;
+                        }
+                    }  
+                }
+            }
+        }
+
+        return (player * 100) + (col*10) + priority;
+    }
+
+    public static int checkColumnPriority(String[][] board) {
+        int priority = 0;
+        int col = 0;
+        int player = 1;
+
+        String[] players = {"O","X"};
+
+        for (int p=0;p<2;p++) {
+            for (int r=0;r<3;r++) {
+                for (int c=0;c<5;c++) {
+                    int count = 0;
+                    int column = -1;
+                    for (int i=0;i<4;i++) {
+                        if ((board[r+i][c]) == " ") {
+                            column = c;
+                        } else if(board[r+i][c] == players[p]) {
+                            count += 1;
+                        } else {
+                            column = -1;
+                            break;
+                        }
+                    }
+                    if(column != -1) {
+                        if (count > priority) {
                             priority = count;
                             col = column;
                             player = p+1;
@@ -179,16 +214,25 @@ public class Main {
         int player = 1;
 
 
-        int rowsPriority = checkRowsPriority(board);
-        int tempPriority = rowsPriority % 10;
-        int tempCol = ((rowsPriority-tempPriority)/10) % 10;
-        int tempPlayer = ((rowsPriority-tempCol)/10) % 10;
+        int priorityCheck = checkRowsPriority(board);
+        int tempPriority = priorityCheck % 10;
+        int tempCol = ((priorityCheck-tempPriority)/10) % 10;
+        int tempPlayer = ((priorityCheck-tempCol)/10) % 10;
 
         player = tempPlayer;
         column = tempCol;
         priority = tempPriority;
 
-        System.out.println(rowsPriority);
+        priorityCheck = checkColumnPriority(board);
+        tempPriority = priorityCheck % 10;
+        tempCol = ((priorityCheck-tempPriority)/10) % 10;
+        tempPlayer = ((priorityCheck-tempCol)/10) % 10;
+
+        if (tempPriority > priority || (tempPriority > priority && (tempPlayer == 2))) {
+            player = tempPlayer;
+            column = tempCol;
+            priority = tempPriority;
+        }
 
         drop(board, column+1, 2);
     }
