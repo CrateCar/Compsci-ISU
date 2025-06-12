@@ -127,8 +127,67 @@ public class Main {
         }
     }
 
+    public static int checkRowsPriority(String[][] board) {
+        int priority = 0;
+        int col = 0;
+        int player = 1;
+
+        String[] players = {"O","X"};
+
+        for (int p=0;p<2;p++) {
+            for (int r=0;r<6;r++) {
+                for (int c=0;c<4;c++) {
+                    int count = 0;
+                    int column = -1;
+                    for (int i=0;i<4;i++) {
+                        if ((board[r][c+i]) == " ") {
+                            if(r<5) {
+                                if (board[r+1][c+i] == " ") {
+                                    column = -1;
+                                    break;
+                                }
+                            } else {
+                                column = i;
+                            }
+                        } else if(board[r][c+i] == players[p]) {
+                            count += 1;
+                        } else {
+                            column = -1;
+                            break;
+                        }
+                    }
+                    if(column != -1) {
+                        if (count >= priority) {
+                            priority = count;
+                            col = column;
+                            player = p+1;
+                        }
+                    }  
+                }
+            }
+        }
+
+        return (player * 100) + (col*10) + priority;
+    }
+
     public static void playSmart(String[][] board) {
-        
+        int priority = 0;
+        int column = 0;
+        int player = 1;
+
+
+        int rowsPriority = checkRowsPriority(board);
+        int tempPriority = rowsPriority % 10;
+        int tempCol = ((rowsPriority-tempPriority)/10) % 10;
+        int tempPlayer = ((rowsPriority-tempCol)/10) % 10;
+
+        player = tempPlayer;
+        column = tempCol;
+        priority = tempPriority;
+
+        System.out.println(rowsPriority);
+
+        drop(board, column+1, 2);
     }
 
     public static void Game(int mode) {
@@ -360,6 +419,36 @@ public class Main {
                     win = true;
                     break;
                 }
+            }
+
+            if (winner == 0) {
+                System.out.println("Nobody won!");
+            }else{
+                System.out.println(String.format("Player %d won!", winner));
+            }
+
+            System.out.println("Play again?");
+            System.out.println("[1] Yes");
+            System.out.println("[2] No");
+            
+            int option = 0;
+
+            while (option == 0) {
+                System.out.println("Select an option:");
+                int tempOption = Integer.parseInt(sc.nextLine());
+
+                if(1 <= tempOption && tempOption <= 2) {
+                    option = tempOption;
+                }
+            }
+
+            if (option == 1) {
+                option = gameOptions();
+                Game(option);
+            } else {
+                System.out.println("Quitting!");
+                sc.close();
+                return;
             }
         }
     }
