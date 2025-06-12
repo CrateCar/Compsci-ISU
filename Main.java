@@ -145,6 +145,8 @@ public class Main {
                                 if (board[r+1][c+i] == " ") {
                                     column = -1;
                                     break;
+                                } else {
+                                    column = col + i;
                                 }
                             } else {
                                 column = c+i;
@@ -156,6 +158,7 @@ public class Main {
                             break;
                         }
                     }
+                    System.out.println(priority);
                     if(column != -1) {
                         if (count >= priority) {
                             priority = count;
