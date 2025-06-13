@@ -61,3 +61,6 @@ The connect 4 project was the project I selected to do for my ISU.  It meets all
 # void Game(int mode, int[] wins)
  - takes in the mode selected as a parameter
  - takes in the wins for each player as a parameter
+ - the player vs player mode takes input from the player twice, and after each input, a win is checked for
+ - the player vs random mode takes input from the player once, a random column is selected, and a win is checked for after each
+ - the player vs smart mode takes input from the player once, a smart decision is made, and a win is checked for after each
