@@ -57,3 +57,9 @@ The connect 4 project was the project I selected to do for my ISU.  It meets all
  - combines the 3 prior functions within this, as this function acts as the brain of the smart AI
  - it goes through and determines which function has the highest priority (if two functions have the same priority, but one of them involves the AI's winning moves, the priority is automatically handed to the AI)
  - it drops the piece into the column that belongs to the highest priority
+
+# void Game(int mode, int[] wins)
+ - takes in the mode selected as a parameter
+ - takes in the wins for each player as a parameter
+ - mode 1:
+  - mode
