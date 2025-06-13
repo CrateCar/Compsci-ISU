@@ -1,4 +1,4 @@
-# Compsci-ISU
+# Connect 4 Project
 
-## Subheading test
-this my compsci isu
+## void printBoard(String[][] board)
+ - H
