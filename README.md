@@ -61,5 +61,3 @@ The connect 4 project was the project I selected to do for my ISU.  It meets all
 # void Game(int mode, int[] wins)
  - takes in the mode selected as a parameter
  - takes in the wins for each player as a parameter
- - mode 1:
-  - mode
