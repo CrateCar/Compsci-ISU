@@ -1,4 +1,4 @@
-## Compsci-ISU
+# Compsci-ISU
 
-# Subheading test
+## Subheading test
 this my compsci isu
