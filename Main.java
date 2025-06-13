@@ -347,7 +347,7 @@ public class Main {
         drop(board, column+1, 2);
     }
 
-    public static void Game(int mode) {
+    public static void Game(int mode, int[] wins) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Game Modes:");
 
@@ -364,247 +364,205 @@ public class Main {
 
         printBoard(board);
 
-        if (mode == 1) {
-            boolean win = false;
-            int winner = 0;
+        boolean win = false;
+        int winner = 0;
+        int option = 0;
 
-            System.out.println("Player 1: O");
-            System.out.println("Player 2: X");
+        switch(mode) {
+            case 1:
+                System.out.println("Player 1: O");
+                System.out.println("Player 2: X");
 
-            while (!win) {
-                //First Player
-                System.out.println("Select a column(1-7):");
-                int column = Integer.parseInt(sc.nextLine());
-                boolean valid = false;
-                while (!valid) {
-                    if (column >= 1 && column <=7) {
-                        valid = drop(board,column,1);
+                while (!win) {
+                    //First Player
+                    System.out.println("Select a column(1-7):");
+                    int column = Integer.parseInt(sc.nextLine());
+                    boolean valid = false;
+                    while (!valid) {
+                        if (column >= 1 && column <=7) {
+                            valid = drop(board,column,1);
+                        }
+
+                        if (!valid) {
+                            System.out.println("Invalid column, try again!");
+                            System.out.println("Select a column(1-7):");
+                            column = Integer.parseInt(sc.nextLine());
+                        }
                     }
-
-                    if (!valid) {
-                        System.out.println("Invalid column, try again!");
-                        System.out.println("Select a column(1-7):");
-                        column = Integer.parseInt(sc.nextLine());
-                    }
-                }
-        
-                printBoard(board);
-
-                int posWin = checkWin(board, 1);
-
-                if (posWin != -1) {
-                    winner = posWin;
-                    win = true;
-                    break;
-                }
-
-                System.out.println("Select a column(1-7):");
-                column = Integer.parseInt(sc.nextLine());
-                valid = false;
-                while (!valid) {
-                    if (column >= 1 && column <=7) {
-                        valid = drop(board,column,2);
-                    }
-
-                    if (!valid) {
-                        System.out.println("Invalid column, try again!");
-                        System.out.println("Select a column(1-7):");
-                        column = Integer.parseInt(sc.nextLine());
-                    }
-                }
-        
-                printBoard(board);
-
-                posWin = checkWin(board, 2);
-
-                if (posWin != -1) {
-                    winner = posWin;
-                    win = true;
-                    break;
-                }
-            }
-            if (winner == 0) {
-                System.out.println("Nobody won!");
-            }else{
-                System.out.println(String.format("Player %d won!", winner));
-            }
-
-            System.out.println("Play again?");
-            System.out.println("[1] Yes");
-            System.out.println("[2] No");
             
-            int option = 0;
+                    printBoard(board);
 
-            while (option == 0) {
-                System.out.println("Select an option:");
-                int tempOption = Integer.parseInt(sc.nextLine());
+                    int posWin = checkWin(board, 1);
 
-                if(1 <= tempOption && tempOption <= 2) {
-                    option = tempOption;
-                }
-            }
-
-            if (option == 1) {
-                option = gameOptions();
-                Game(option);
-            } else {
-                System.out.println("Quitting!");
-                sc.close();
-                return;
-            }
-        } else if (mode == 2) {
-            boolean win = false;
-            int winner = 0;
-
-            System.out.println("Player 1: O");
-            System.out.println("Player 2: X");
-
-            while (!win) {
-                //First Player
-                System.out.println("Select a column(1-7):");
-                int column = Integer.parseInt(sc.nextLine());
-                boolean valid = false;
-                while (!valid) {
-                    if (column >= 1 && column <=7) {
-                        valid = drop(board,column,1);
+                    if (posWin != -1) {
+                        winner = posWin;
+                        win = true;
+                        break;
                     }
 
-                    if (!valid) {
-                        System.out.println("Invalid column, try again!");
-                        System.out.println("Select a column(1-7):");
-                        column = Integer.parseInt(sc.nextLine());
+                    System.out.println("Select a column(1-7):");
+                    column = Integer.parseInt(sc.nextLine());
+                    valid = false;
+                    while (!valid) {
+                        if (column >= 1 && column <=7) {
+                            valid = drop(board,column,2);
+                        }
+
+                        if (!valid) {
+                            System.out.println("Invalid column, try again!");
+                            System.out.println("Select a column(1-7):");
+                            column = Integer.parseInt(sc.nextLine());
+                        }
                     }
-                }
-        
-                printBoard(board);
-
-                int posWin = checkWin(board, 1);
-
-                if (posWin != -1) {
-                    winner = posWin;
-                    win = true;
-                    break;
-                }
-
-                System.out.println("AI's turn:");
-
-                randomizeColumn(board);
-
-                posWin = checkWin(board, 2);
-
-                if (posWin != -1) {
-                    winner = posWin;
-                    win = true;
-                    break;
-                }
-            }
-            if (winner == 0) {
-                System.out.println("Nobody won!");
-            }else{
-                System.out.println(String.format("Player %d won!", winner));
-            }
-
-            System.out.println("Play again?");
-            System.out.println("[1] Yes");
-            System.out.println("[2] No");
             
-            int option = 0;
+                    printBoard(board);
 
-            while (option == 0) {
-                System.out.println("Select an option:");
-                int tempOption = Integer.parseInt(sc.nextLine());
+                    posWin = checkWin(board, 2);
 
-                if(1 <= tempOption && tempOption <= 2) {
-                    option = tempOption;
+                    if (posWin != -1) {
+                        winner = posWin;
+                        win = true;
+                        break;
+                    }
                 }
-            }
+                if (winner == 0) {
+                    System.out.println("Nobody won!");
+                }else{
+                    System.out.println(String.format("Player %d won!", winner));
+                    wins[winner-1] = wins[winner-1]+1; 
+                }
+            case 2:
+                System.out.println("Player 1: O");
+                System.out.println("Player 2: X");
 
-            if (option == 1) {
-                option = gameOptions();
-                Game(option);
-            } else {
-                System.out.println("Quitting!");
-                sc.close();
-                return;
+                while (!win) {
+                    //First Player
+                    System.out.println("Select a column(1-7):");
+                    int column = Integer.parseInt(sc.nextLine());
+                    boolean valid = false;
+                    while (!valid) {
+                        if (column >= 1 && column <=7) {
+                            valid = drop(board,column,1);
+                        }
+
+                        if (!valid) {
+                            System.out.println("Invalid column, try again!");
+                            System.out.println("Select a column(1-7):");
+                            column = Integer.parseInt(sc.nextLine());
+                        }
+                    }
+            
+                    printBoard(board);
+
+                    int posWin = checkWin(board, 1);
+
+                    if (posWin != -1) {
+                        winner = posWin;
+                        win = true;
+                        break;
+                    }
+
+                    System.out.println("AI's turn:");
+
+                    randomizeColumn(board);
+
+                    posWin = checkWin(board, 2);
+
+                    if (posWin != -1) {
+                        winner = posWin;
+                        win = true;
+                        break;
+                    }
+                }
+                if (winner == 0) {
+                    System.out.println("Nobody won!");
+                }else{
+                    System.out.println(String.format("Player %d won!", winner));
+                    wins[winner-1] = wins[winner-1]+1;
+                }
+            case 3:
+                System.out.println("Player 1: O");
+                System.out.println("Player 2: X");
+
+                while (!win) {
+                    //First Player
+                    System.out.println("Select a column(1-7):");
+                    int column = Integer.parseInt(sc.nextLine());
+                    boolean valid = false;
+                    while (!valid) {
+                        if (column >= 1 && column <=7) {
+                            valid = drop(board,column,1);
+                        }
+
+                        if (!valid) {
+                            System.out.println("Invalid column, try again!");
+                            System.out.println("Select a column(1-7):");
+                            column = Integer.parseInt(sc.nextLine());
+                        }
+                    }
+            
+                    printBoard(board);
+
+                    int posWin = checkWin(board, 1);
+
+                    if (posWin != -1) {
+                        winner = posWin;
+                        win = true;
+                        break;
+                    }
+
+                    System.out.println("AI's turn:");
+
+                    playSmart(board);
+            
+                    printBoard(board);
+
+                    posWin = checkWin(board, 2);
+
+                    if (posWin != -1) {
+                        winner = posWin;
+                        win = true;
+                        break;
+                    }
+                }
+
+                if (winner == 0) {
+                    System.out.println("Nobody won!");
+                }else{
+                    System.out.println(String.format("Player %d won!", winner));
+                    wins[winner-1] = wins[winner-1]+1;
+                }
+            default:
+                break;
+        }
+
+        
+        System.out.println("\nLeaderboard:");
+        System.out.println(String.format("Player 1 Wins - %d", wins[0]));
+        System.out.println(String.format("Player 2 Wins - %d", wins[1]));
+
+        System.out.println("\nPlay again?");
+        System.out.println("[1] Yes");
+        System.out.println("[2] No");
+        
+        option = 0;
+
+        while (option == 0) {
+            System.out.println("Select an option:");
+            int tempOption = Integer.parseInt(sc.nextLine());
+
+            if(1 <= tempOption && tempOption <= 2) {
+                option = tempOption;
             }
+        }
+
+        if (option == 1) {
+            option = gameOptions();
+            Game(option,wins);
         } else {
-            boolean win = false;
-            int winner = 0;
-
-            System.out.println("Player 1: O");
-            System.out.println("Player 2: X");
-
-            while (!win) {
-                //First Player
-                System.out.println("Select a column(1-7):");
-                int column = Integer.parseInt(sc.nextLine());
-                boolean valid = false;
-                while (!valid) {
-                    if (column >= 1 && column <=7) {
-                        valid = drop(board,column,1);
-                    }
-
-                    if (!valid) {
-                        System.out.println("Invalid column, try again!");
-                        System.out.println("Select a column(1-7):");
-                        column = Integer.parseInt(sc.nextLine());
-                    }
-                }
-        
-                printBoard(board);
-
-                int posWin = checkWin(board, 1);
-
-                if (posWin != -1) {
-                    winner = posWin;
-                    win = true;
-                    break;
-                }
-
-                System.out.println("AI's turn:");
-
-                playSmart(board);
-        
-                printBoard(board);
-
-                posWin = checkWin(board, 2);
-
-                if (posWin != -1) {
-                    winner = posWin;
-                    win = true;
-                    break;
-                }
-            }
-
-            if (winner == 0) {
-                System.out.println("Nobody won!");
-            }else{
-                System.out.println(String.format("Player %d won!", winner));
-            }
-
-            System.out.println("Play again?");
-            System.out.println("[1] Yes");
-            System.out.println("[2] No");
-            
-            int option = 0;
-
-            while (option == 0) {
-                System.out.println("Select an option:");
-                int tempOption = Integer.parseInt(sc.nextLine());
-
-                if(1 <= tempOption && tempOption <= 2) {
-                    option = tempOption;
-                }
-            }
-
-            if (option == 1) {
-                option = gameOptions();
-                Game(option);
-            } else {
-                System.out.println("Quitting!");
-                sc.close();
-                return;
-            }
+            System.out.println("Quitting!");
+            sc.close();
+            return;
         }
     }
     public static void main(String[] args) {
@@ -612,8 +570,9 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         int option = gameOptions();
+        int wins[] = {0,0};
 
-        Game(option);
+        Game(option,wins);
 
         sc.close();
     }
