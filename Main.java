@@ -152,7 +152,7 @@ public class Main {
                                 column = c+i;
                             }
                         } else if(board[r][c+i] == players[p]) {
-                            count += 1;
+                            count ++;
                         } else {
                             column = -1;
                             break;
@@ -181,14 +181,14 @@ public class Main {
 
         for (int p=0;p<2;p++) {
             for (int r=0;r<3;r++) {
-                for (int c=0;c<5;c++) {
+                for (int c=0;c<6;c++) {
                     int count = 0;
                     int column = -1;
                     for (int i=0;i<4;i++) {
                         if ((board[r+i][c]) == " ") {
                             column = c;
                         } else if(board[r+i][c] == players[p]) {
-                            count += 1;
+                            count++;
                         } else {
                             column = -1;
                             break;
@@ -196,6 +196,51 @@ public class Main {
                     }
                     if(column != -1) {
                         if (count > priority) {
+                            priority = count;
+                            col = column;
+                            player = p+1;
+                        }
+                    }  
+                }
+            }
+        }
+
+        return (player * 100) + (col*10) + priority;
+    }
+
+    public static int checkDiagnolPriority1(String[][] board) {
+        int priority = 0;
+        int col = 0;
+        int player = 1;
+
+        String[] players = {"O","X"};
+
+        for (int p=0;p<2;p++) {
+            for (int r=0;r<3;r++) {
+                for (int c=0;c<4;c++) {
+                    int count = 0;
+                    int column = -1;
+                    for (int i=0;i<4;i++) {
+                        if ((board[r+i][c+i]) == " ") {
+                            if(r+i<5) {
+                                if (board[r+i+1][c+i] == " ") {
+                                    column = -1;
+                                    break;
+                                } else {
+                                    column = col + i;
+                                }
+                            } else {
+                                column = c+i;
+                            }
+                        } else if(board[r+i][c+i] == players[p]) {
+                            count ++;
+                        } else {
+                            column = -1;
+                            break;
+                        }
+                    }
+                    if(column != -1) {
+                        if (count >= priority) {
                             priority = count;
                             col = column;
                             player = p+1;
@@ -216,8 +261,12 @@ public class Main {
 
         int priorityCheck = checkRowsPriority(board);
         int tempPriority = priorityCheck % 10;
-        int tempCol = ((priorityCheck-tempPriority)/10) % 10;
+        priorityCheck = ((priorityCheck-tempPriority)/10);
+        int tempCol = priorityCheck % 10;
+        priorityCheck = ((priorityCheck-tempCol)/10);
         int tempPlayer = ((priorityCheck-tempCol)/10) % 10;
+
+       // System.out.println(priorityCheck);
 
         player = tempPlayer;
         column = tempCol;
@@ -225,7 +274,9 @@ public class Main {
 
         priorityCheck = checkColumnPriority(board);
         tempPriority = priorityCheck % 10;
-        tempCol = ((priorityCheck-tempPriority)/10) % 10;
+        priorityCheck = ((priorityCheck-tempPriority)/10);
+        tempCol = priorityCheck % 10;
+        priorityCheck = ((priorityCheck-tempCol)/10);
         tempPlayer = ((priorityCheck-tempCol)/10) % 10;
 
         if (tempPriority > priority || (tempPriority > priority && (tempPlayer == 2))) {
@@ -233,6 +284,8 @@ public class Main {
             column = tempCol;
             priority = tempPriority;
         }
+
+        System.out.println(tempPlayer);
 
         drop(board, column+1, 2);
     }
@@ -379,8 +432,6 @@ public class Main {
                 System.out.println("AI's turn:");
 
                 randomizeColumn(board);
-        
-                printBoard(board);
 
                 posWin = checkWin(board, 2);
 
