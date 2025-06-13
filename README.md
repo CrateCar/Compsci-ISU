@@ -58,7 +58,7 @@ The connect 4 project was the project I selected to do for my ISU.  It meets all
  - it goes through and determines which function has the highest priority (if two functions have the same priority, but one of them involves the AI's winning moves, the priority is automatically handed to the AI)
  - it drops the piece into the column that belongs to the highest priority
 
-# void Game(int mode, int[] wins)
+## void Game(int mode, int[] wins)
  - takes in the mode selected as a parameter
  - takes in the wins for each player as a parameter
  - the player vs player mode takes input from the player twice, and after each input, a win is checked for
@@ -69,3 +69,15 @@ The connect 4 project was the project I selected to do for my ISU.  It meets all
  - the user is prompted if they would like to play again
 
 # Variables
+
+## int p=0;
+ - this variable was used in priority checks to loop through the priority of the two different players
+
+## int r=0;
+ - this variable was used when iterating through the rows
+
+## int c=0;
+ - this variable was used when iterating through columns
+
+## int i=0;
+ - this variable was used when iterating through connect 4 sequences
