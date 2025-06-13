@@ -13,3 +13,9 @@ The connect 4 project was the project I selected to do for my ISU.  It meets all
  - the player parameter takes in what player is currently dropping their piece
  - the function attempts to drop a piece into the board
  - the function returns whether or not the column is a valid dropping space
+
+## int checkWin(String[][] board,int player)
+ - the board parameter takes how the board looks like
+ - the player parameter takes which player the win should be checked for
+ - the function checks for a win in rows, then columns, then diagonal (downwards), and finally diagonal again (upwards)
+ - it will return if a winner, a draw, or nothing was found
