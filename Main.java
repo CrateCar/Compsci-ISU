@@ -137,7 +137,7 @@ public class Main {
             }
         }
 
-        sc.close();
+        //sc.close();
 
         return option; // returns the option given by the user
     }
