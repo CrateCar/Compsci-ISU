@@ -78,6 +78,21 @@ public class Main {
             }
         }
 
+        for (int r=0;r<3;r++) {
+            for (int c=0;c<4;c++) {
+                int count = 0;
+                for (int i=0;i<4;i++) {
+                    if(board[r+i][c+i] == players[player-1]) {
+                        count++;
+                    }
+                }
+                if(count == 4) {
+                    winner = player;
+                    return winner;
+                }
+            }
+        }
+
         for (int r=5;r>=3;r--) {
             for (int c=0;c<4;c++) {
                 int count = 0;
@@ -146,7 +161,7 @@ public class Main {
                                     column = -1;
                                     break;
                                 } else {
-                                    column = col + i;
+                                    column = c + i;
                                 }
                             } else {
                                 column = c+i;
@@ -208,7 +223,7 @@ public class Main {
         return (player * 100) + (col*10) + priority;
     }
 
-    public static int checkDiagnolPriority1(String[][] board) {
+    public static int checkDiagnolPriority(String[][] board) {
         int priority = 0;
         int col = 0;
         int player = 1;
@@ -227,7 +242,7 @@ public class Main {
                                     column = -1;
                                     break;
                                 } else {
-                                    column = col + i;
+                                    column = c + i;
                                 }
                             } else {
                                 column = c+i;
@@ -239,13 +254,44 @@ public class Main {
                             break;
                         }
                     }
+
                     if(column != -1) {
                         if (count >= priority) {
                             priority = count;
                             col = column;
                             player = p+1;
                         }
+                    }
+
+                    count = 0;
+
+                    for (int i=0;i<4;i++) {
+                        if ((board[5-r-i][c+i]) == " ") {
+                            if(5-r-i<5) {
+                                if (board[4-r-i][c+i] == " ") {
+                                    column = -1;
+                                    break;
+                                } else {
+                                    column = c + i;
+                                }
+                            } else {
+                                column = c+i;
+                            }
+                        } else if(board[5-r-i][c+i] == players[p]) {
+                            count ++;
+                        } else {
+                            column = -1;
+                            break;
+                        }
                     }  
+
+                    if(column != -1) {
+                        if (count >= priority) {
+                            priority = count;
+                            col = column;
+                            player = p+1;
+                        }
+                    }
                 }
             }
         }
@@ -285,7 +331,18 @@ public class Main {
             priority = tempPriority;
         }
 
-        System.out.println(tempPlayer);
+        priorityCheck = checkDiagnolPriority(board);
+        tempPriority = priorityCheck % 10;
+        priorityCheck = ((priorityCheck-tempPriority)/10);
+        tempCol = priorityCheck % 10;
+        priorityCheck = ((priorityCheck-tempCol)/10);
+        tempPlayer = ((priorityCheck-tempCol)/10) % 10;
+
+        if (tempPriority > priority || (tempPriority > priority && (tempPlayer == 2))) {
+            player = tempPlayer;
+            column = tempCol;
+            priority = tempPriority;
+        }
 
         drop(board, column+1, 2);
     }
