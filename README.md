@@ -81,3 +81,21 @@ The connect 4 project was the project I selected to do for my ISU.  It meets all
 
 ## int i=0;
  - this variable was used when iterating through connect 4 sequences
+
+## int priority = 0;
+ - this variable was used to represent the priority of either a row, a column, or a diagonal connect 4 sequence
+
+## boolean valid
+ - this variable was used to check for if a move was valid
+
+## String[][] board
+ - this variable was used to store the board
+
+## boolean win = false;
+ - this variable was used to control the main loop
+
+## int winner = 0;
+ - this variable stored the winner
+
+## int option = 0;
+ - this variable stored an option by the user's input
