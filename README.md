@@ -19,3 +19,8 @@ The connect 4 project was the project I selected to do for my ISU.  It meets all
  - the player parameter takes which player the win should be checked for
  - the function checks for a win in rows, then columns, then diagonal (downwards), and finally diagonal again (upwards)
  - it will return if a winner, a draw, or nothing was found
+
+## int gameOptions()
+ - simply checks for and returns what game option the user selects
+
+## void randomizeColumn(String[][] board)
