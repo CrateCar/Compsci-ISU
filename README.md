@@ -99,3 +99,6 @@ The connect 4 project was the project I selected to do for my ISU.  It meets all
 
 ## int option = 0;
  - this variable stored an option by the user's input
+
+## int wins[] = {0,0};
+ - this variable stores the wins of player 1 and player 2
