@@ -123,7 +123,7 @@ public class Main {
 
         while (option == 0) {
             System.out.print("Select a game mode to play (by number):");
-            int tempOption = Integer.parseInt(sc.nextLine());
+            int tempOption = sc.nextInt();
 
             if(1 <= tempOption && tempOption <= 3) {
                 option = tempOption;
@@ -268,11 +268,11 @@ public class Main {
                     for (int i=0;i<4;i++) {
                         if ((board[5-r-i][c+i]) == " ") {
                             if(5-r-i<5) {
-                                if (board[4-r-i][c+i] == " ") {
+                                if (board[5-r-i+1][c+i] == " ") {
                                     column = -1;
                                     break;
                                 } else {
-                                    column = c + i;
+                                    column = c+i;
                                 }
                             } else {
                                 column = c+i;
@@ -286,7 +286,7 @@ public class Main {
                     }  
 
                     if(column != -1) {
-                        if (count >= priority) {
+                        if (count > priority) {
                             priority = count;
                             col = column;
                             player = p+1;
@@ -323,7 +323,7 @@ public class Main {
         priorityCheck = ((priorityCheck-tempCol)/10);
         tempPlayer = priorityCheck % 10;
 
-        if (tempPriority > priority || (tempPriority > priority && (tempPlayer == 2))) {
+        if (tempPriority > priority || (tempPriority >= priority && (tempPlayer == 2))) {
             player = tempPlayer;
             column = tempCol;
             priority = tempPriority;
@@ -336,7 +336,7 @@ public class Main {
         priorityCheck = ((priorityCheck-tempCol)/10);
         tempPlayer = priorityCheck % 10;
 
-        if (tempPriority > priority || (tempPriority > priority && (tempPlayer == 2))) {
+        if (tempPriority > priority || (tempPriority >= priority && (tempPlayer == 2))) {
             player = tempPlayer;
             column = tempCol;
             priority = tempPriority;
@@ -374,7 +374,7 @@ public class Main {
                 while (!win) {
                     //First Player
                     System.out.println("Select a column(1-7):");
-                    int column = Integer.parseInt(sc.nextLine());
+                    int column = sc.nextInt();
                     boolean valid = false;
                     while (!valid) {
                         if (column >= 1 && column <=7) {
@@ -384,7 +384,7 @@ public class Main {
                         if (!valid) {
                             System.out.println("Invalid column, try again!");
                             System.out.println("Select a column(1-7):");
-                            column = Integer.parseInt(sc.nextLine());
+                            column = sc.nextInt();
                         }
                     }
             
@@ -399,7 +399,7 @@ public class Main {
                     }
 
                     System.out.println("Select a column(1-7):");
-                    column = Integer.parseInt(sc.nextLine());
+                    column = sc.nextInt();
                     valid = false;
                     while (!valid) {
                         if (column >= 1 && column <=7) {
@@ -409,7 +409,7 @@ public class Main {
                         if (!valid) {
                             System.out.println("Invalid column, try again!");
                             System.out.println("Select a column(1-7):");
-                            column = Integer.parseInt(sc.nextLine());
+                            column = sc.nextInt();
                         }
                     }
             
@@ -436,7 +436,7 @@ public class Main {
                 while (!win) {
                     //First Player
                     System.out.println("Select a column(1-7):");
-                    int column = Integer.parseInt(sc.nextLine());
+                    int column = sc.nextInt();
                     boolean valid = false;
                     while (!valid) {
                         if (column >= 1 && column <=7) {
@@ -446,7 +446,7 @@ public class Main {
                         if (!valid) {
                             System.out.println("Invalid column, try again!");
                             System.out.println("Select a column(1-7):");
-                            column = Integer.parseInt(sc.nextLine());
+                            column = sc.nextInt();
                         }
                     }
             
@@ -485,7 +485,7 @@ public class Main {
                 while (!win) {
                     //First Player
                     System.out.println("Select a column(1-7):");
-                    int column = Integer.parseInt(sc.nextLine());
+                    int column = sc.nextInt();
                     boolean valid = false;
                     while (!valid) {
                         if (column >= 1 && column <=7) {
@@ -495,7 +495,7 @@ public class Main {
                         if (!valid) {
                             System.out.println("Invalid column, try again!");
                             System.out.println("Select a column(1-7):");
-                            column = Integer.parseInt(sc.nextLine());
+                            column = sc.nextInt();
                         }
                     }
             
@@ -547,7 +547,7 @@ public class Main {
 
         while (option == 0) {
             System.out.println("Select an option:");
-            int tempOption = Integer.parseInt(sc.nextLine());
+            int tempOption = sc.nextInt();
 
             if(1 <= tempOption && tempOption <= 2) {
                 option = tempOption;
