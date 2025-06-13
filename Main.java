@@ -161,20 +161,20 @@ public class Main {
                                     column = -1;
                                     break;
                                 } else {
-                                    column = c + i;
+                                    column = c +i;
                                 }
                             } else {
                                 column = c+i;
                             }
-                        } else if(board[r][c+i] == players[p]) {
-                            count ++;
-                        } else {
+                        }else if(board[r][c+i] == players[p]) {
+                            count++;
+                        }else {
                             column = -1;
                             break;
                         }
                     }
                     if(column != -1) {
-                        if (count >= priority) {
+                        if (count > priority) {
                             priority = count;
                             col = column;
                             player = p+1;
@@ -242,7 +242,7 @@ public class Main {
                                     column = -1;
                                     break;
                                 } else {
-                                    column = c + i;
+                                    column = c+i;
                                 }
                             } else {
                                 column = c+i;
@@ -256,7 +256,7 @@ public class Main {
                     }
 
                     if(column != -1) {
-                        if (count >= priority) {
+                        if (count > priority) {
                             priority = count;
                             col = column;
                             player = p+1;
@@ -310,9 +310,7 @@ public class Main {
         priorityCheck = ((priorityCheck-tempPriority)/10);
         int tempCol = priorityCheck % 10;
         priorityCheck = ((priorityCheck-tempCol)/10);
-        int tempPlayer = ((priorityCheck-tempCol)/10) % 10;
-
-       // System.out.println(priorityCheck);
+        int tempPlayer = priorityCheck % 10;
 
         player = tempPlayer;
         column = tempCol;
@@ -323,7 +321,7 @@ public class Main {
         priorityCheck = ((priorityCheck-tempPriority)/10);
         tempCol = priorityCheck % 10;
         priorityCheck = ((priorityCheck-tempCol)/10);
-        tempPlayer = ((priorityCheck-tempCol)/10) % 10;
+        tempPlayer = priorityCheck % 10;
 
         if (tempPriority > priority || (tempPriority > priority && (tempPlayer == 2))) {
             player = tempPlayer;
@@ -336,7 +334,7 @@ public class Main {
         priorityCheck = ((priorityCheck-tempPriority)/10);
         tempCol = priorityCheck % 10;
         priorityCheck = ((priorityCheck-tempCol)/10);
-        tempPlayer = ((priorityCheck-tempCol)/10) % 10;
+        tempPlayer = priorityCheck % 10;
 
         if (tempPriority > priority || (tempPriority > priority && (tempPlayer == 2))) {
             player = tempPlayer;
