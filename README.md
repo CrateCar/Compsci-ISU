@@ -35,3 +35,11 @@ The connect 4 project was the project I selected to do for my ISU.  It meets all
  - if there is an obstruction, the priority is neglected and will not be stored
  - if there is no way to block the connect 4, it will also be neglected and the data will not be stored
  - returns the player (to block or connect), the column, and the priority
+
+## int checkColumnPriority(String[][] board)
+ - takes the board as a parameter
+ - also apart of the smart ai's priority system
+ - this function checks through each column, and checks through the different ways to block the connect 4 in this column
+ - once again, the priority is placed towards non-obstructed potential ways of winning
+ - since columns are easier to block, there are no additional checks to select the column to drop the piece into
+ - returns the player (to block or connect), the column, and the priority
