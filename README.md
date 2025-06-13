@@ -67,3 +67,5 @@ The connect 4 project was the project I selected to do for my ISU.  It meets all
  - the winner is displayed
  - the leaderboard is shown
  - the user is prompted if they would like to play again
+
+# Variables
