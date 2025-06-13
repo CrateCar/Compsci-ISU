@@ -64,3 +64,6 @@ The connect 4 project was the project I selected to do for my ISU.  It meets all
  - the player vs player mode takes input from the player twice, and after each input, a win is checked for
  - the player vs random mode takes input from the player once, a random column is selected, and a win is checked for after each
  - the player vs smart mode takes input from the player once, a smart decision is made, and a win is checked for after each
+ - the winner is displayed
+ - the leaderboard is shown
+ - the user is prompted if they would like to play again
