@@ -342,7 +342,11 @@ public class Main {
             priority = tempPriority;
         }
 
-        drop(board, column+1, 2);
+        boolean valid = drop(board, column+1, 2);
+
+        if (!valid) {
+            randomizeColumn(board);
+        }
     }
 
     public static void Game(int mode, int[] wins) {
