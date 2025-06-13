@@ -43,3 +43,11 @@ The connect 4 project was the project I selected to do for my ISU.  It meets all
  - once again, the priority is placed towards non-obstructed potential ways of winning
  - since columns are easier to block, there are no additional checks to select the column to drop the piece into
  - returns the player (to block or connect), the column, and the priority
+
+## int checkDiagnolPriority(String[][] board)
+ - also takes the board as a parameter
+ - once again, part of the smart ai's priority system
+ - this function checks through each diagnol, and checks through the different ways to block the connect 4 in these diagnols
+ - this function has to check the diagnols going upwards and going downwards
+ - priority is placed towards non-obstructed potential ways of winning and potential ways of winning that can be defended against
+ - returns the player (to block or connect), the column, and the priority
