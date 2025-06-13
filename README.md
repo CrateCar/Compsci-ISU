@@ -24,3 +24,6 @@ The connect 4 project was the project I selected to do for my ISU.  It meets all
  - simply checks for and returns what game option the user selects
 
 ## void randomizeColumn(String[][] board)
+ - takes the current board as a parameter
+ - it will keep trying to place a piece into a random column until the column is valid
+
