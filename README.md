@@ -27,3 +27,11 @@ The connect 4 project was the project I selected to do for my ISU.  It meets all
  - takes the current board as a parameter
  - it will keep trying to place a piece into a random column until the column is valid
 
+## int checkRowsPriority(String[][] board)
+ - takes the board as a parameter
+ - apart of the smart ai's priority system
+ - checks through each row, and checks through the different ways to connect 4 in that row
+ - priority is based on the count of the same player in a potential connect 4
+ - if there is an obstruction, the priority is neglected and will not be stored
+ - if there is no way to block the connect 4, it will also be neglected and the data will not be stored
+ - returns the player (to block or connect), the column, and the priority
